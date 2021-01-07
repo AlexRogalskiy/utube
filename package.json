@@ -1,0 +1,64 @@
+{
+  "name": "electron-xiami",
+  "productName": "Xiami Music",
+  "version": "2.0.1",
+  "description": "Xiami Electron desktop application",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron src/main.js",
+    "pack": "electron-builder --dir",
+    "dist:linux": "electron-builder --linux AppImage deb --ia32 --x64",
+    "dist:macOS": "electron-builder --mac",
+    "dist:win": "electron-builder --win",
+    "postinstall": "electron-builder install-app-deps",
+    "publish": "build -p always --ia32 --x64"
+  },
+  "repository": "https://github.com/eNkru/electron-xiami",
+  "keywords": [
+    "Electron",
+    "Xiami",
+    "虾米",
+    "虾米播放器",
+    "虾米客户端",
+    "Online music player"
+  ],
+  "author": "Howard Ju <howard.ju@outlook.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^5.0.4",
+    "electron-builder": "^20.44.4"
+  },
+  "dependencies": {
+    "dbus-native": "^0.2.5",
+    "download": "^6.2.5",
+    "electron-json-storage": "^4.1.6",
+    "electron-settings": "^3.1.1",
+    "electron-updater": "^4.0.6",
+    "fs-extra": "^5.0.0",
+    "hh-mm-ss": "^1.2.0",
+    "is-online": "^8.2.0"
+  },
+  "build": {
+    "appId": "nz.co.enkru.${name}",
+    "linux": {
+      "category": "AudioVideo;Audio",
+      "desktop": {
+        "StartupWMClass": "xiami music"
+      },
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "extraResources": "extraResources/pepperflash/libpepflashplayer.so"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "extraResources": "extraResources/pepperflash/PepperFlashPlayer.plugin/**/*"
+    },
+    "win": {
+      "target": "msi"
+    }
+  }
+}
